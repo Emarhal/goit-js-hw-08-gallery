@@ -28,17 +28,19 @@ const galleryList = galleryItems
   .join("");
 
 ref.gallery.insertAdjacentHTML("beforeend", galleryList);
+function abdateAtt(src = "", alt = "") {
+  ref.lightboxImg.src = src;
+  ref.lightboxImg.alt = alt;
+}
 
 ref.gallery.addEventListener("click", (event) => {
   event.preventDefault();
   if (event.target.tagName !== "IMG") return;
   ref.lightbox.classList.add("is-open");
-  ref.lightboxImg.src = event.target.dataset.source;
-  ref.lightboxImg.alt = event.target.alt;
+  abdateAtt(event.target.dataset.source, event.target.alt);
 });
 
 ref.closeBtn.addEventListener("click", (event) => {
   ref.lightbox.classList.remove("is-open");
-  ref.lightboxImg.src = "";
-  ref.lightboxImg.alt = "";
+  abdateAtt();
 });
